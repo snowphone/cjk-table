@@ -1,6 +1,9 @@
 package kr.sixtyfive
 
 
+/**
+ * @param alignment A rule for an alignment. Either of `AlignLeft` or `AlignRight` is allowed.
+ */
 class Table(
 	alignment: Alignment = AlignRight
 ) {
