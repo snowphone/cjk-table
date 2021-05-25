@@ -19,7 +19,7 @@ That is why I started this project.
 <dependency>
   <groupId>com.github.snowphone</groupId>
   <artifactId>cjk-table</artifactId>
-  <version>Tag</version>
+  <version>0.2</version>
 </dependency>
 ```
 
@@ -30,28 +30,29 @@ repositories {
   maven { url="https://jitpack.io".let(::uri) }
 }
 dependencies {
-	implementation("com.github.snowphone:cjk-table:0.1")
+  implementation("com.github.snowphone:cjk-table:0.2")
 }
 ```
 
 ## Example
 
 ```kotlin
-	fun renderTable() {
-		val expected =
-			"──┬────────\n" +
-			"ID│Language\n" +
-			"──┼────────\n" +
-			" 0│  한국어\n" +
-			"──┴────────\n"
+  fun renderTable() {
+    val expected =
+      "──┬────────\n" +
+      "ID│Language\n" +
+      "──┼────────\n" +
+      " 0│  한국어\n" +
+      "──┴────────\n"
 
-		val table = Table()
-		table.addLine()
-		table.addRow("ID", "Language")
-		table.addLine()
-		table.addRow(0, "한국어")
-		table.addLine()
+    // Default argument is AlignRight but AlignLeft is also possible!
+    val table = Table() 
+    table.addLine()
+    table.addRow("ID", "Language")
+    table.addLine()
+    table.addRow(0, "한국어")
+    table.addLine()
 
-		assertEquals(expected, table.render())
-	}
+    assertEquals(expected, table.render())
+  }
 ```

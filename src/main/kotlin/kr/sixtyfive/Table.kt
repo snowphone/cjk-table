@@ -2,17 +2,17 @@ package kr.sixtyfive
 
 
 class Table(
-	alignment: Alignment = AlignRight()
+	alignment: Alignment = AlignRight
 ) {
 	private val delimiter = '│'
-	private val horirontalLine = '─'
+	private val horizontalLine = '─'
 	private val cross = '┼'
 	private val topCross = '┬'
 	private val bottomCross = '┴'
 
 	private val table = mutableListOf<List<String>>()
 	private val lineIndices = mutableSetOf<Int>()
-	private val padfn = alignment.pad()
+	private val padFn = alignment.pad()
 
 	/**
 	 * Insert a row to the bottom of the table.
@@ -42,7 +42,7 @@ class Table(
 					table.size -> bottomCross
 					else -> cross
 				}
-				val borderLine = widths.map(horirontalLine.toString()::repeat).toList()
+				val borderLine = widths.map(horizontalLine.toString()::repeat).toList()
 				builder.append(renderLine(borderLine, widths, vertDelimiter))
 			}
 
@@ -59,12 +59,12 @@ class Table(
 	}
 
 	private fun renderLine(words: List<String>, widths: List<Int>, delimiter: Char = this.delimiter): String {
-		val padchar = ' '
+		val padChar = ' '
 		val builder = StringBuilder()
 		for (c in words.indices) {
 			val word = words[c]
 			val width = widths[c] - word.filter(Char::isFullWidth).count()
-			val elem = padfn(word, width, padchar) + if (c + 1 < words.size) {
+			val elem = padFn(word, width, padChar) + if (c + 1 < words.size) {
 				delimiter
 			} else {
 				'\n'
