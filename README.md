@@ -1,4 +1,5 @@
 # cjk-table
+[![](https://jitci.com/gh/snowphone/cjk-table/svg)](https://jitci.com/gh/snowphone/cjk-table)
 
 This is a simple table supporting CJK letters and alignments.
 Still there are several alternatives, but none of them supports both of CJK letters
