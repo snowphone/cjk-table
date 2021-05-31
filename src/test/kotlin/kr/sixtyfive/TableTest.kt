@@ -5,6 +5,18 @@ import kotlin.test.assertEquals
 
 internal class TableTest {
 	@Test
+	fun chainCall() {
+		val expected =
+			"  Name\n" +
+					"한국어\n"
+		val table = Table()
+			.addRow("Name")
+			.addRow("한국어")
+
+		assertEquals(expected, table.render())
+	}
+
+	@Test
 	fun oneColumn() {
 		val expected =
 			"  Name\n" +

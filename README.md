@@ -20,7 +20,7 @@ That is why I started this project.
 <dependency>
   <groupId>com.github.snowphone</groupId>
   <artifactId>cjk-table</artifactId>
-  <version>0.2</version>
+  <version>0.3</version>
 </dependency>
 ```
 
@@ -31,7 +31,7 @@ repositories {
   maven { url="https://jitpack.io".let(::uri) }
 }
 dependencies {
-  implementation("com.github.snowphone:cjk-table:0.2")
+  implementation("com.github.snowphone:cjk-table:0.3")
 }
 ```
 

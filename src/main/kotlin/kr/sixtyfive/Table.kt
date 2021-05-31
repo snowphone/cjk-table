@@ -20,15 +20,17 @@ class Table(
 	/**
 	 * Insert a row to the bottom of the table.
 	 */
-	fun addRow(vararg args: Any) {
+	fun addRow(vararg args: Any): Table {
 		table.add(args.iterator().asSequence().map(Any::toString).toList())
+		return this
 	}
 
 	/**
 	 * Add a horizontal line to the bottom of a current table.
 	 */
-	fun addLine() {
+	fun addLine(): Table {
 		lineIndices.add(table.size)
+		return this
 	}
 
 	/**
