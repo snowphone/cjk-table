@@ -1,17 +1,17 @@
 package kr.sixtyfive
 
-
 /**
  * @param alignment A rule for an alignment. Either of `AlignLeft` or `AlignRight` is allowed.
  */
 class Table(
-	alignment: Alignment = AlignRight
+	alignment: Alignment = RightAlign,
+	delimiterSet: Delimiter = FancyDelimiter
 ) {
-	private val delimiter = '│'
-	private val horizontalLine = '─'
-	private val cross = '┼'
-	private val topCross = '┬'
-	private val bottomCross = '┴'
+	private val delimiter = delimiterSet.vertical
+	private val horizontalLine = delimiterSet.horizontal
+	private val cross = delimiterSet.cross
+	private val topCross = delimiterSet.topCross
+	private val bottomCross = delimiterSet.bottomCross
 
 	private val table = mutableListOf<List<String>>()
 	private val lineIndices = mutableSetOf<Int>()
@@ -38,7 +38,7 @@ class Table(
 	 */
 	fun render(): String {
 		val colLen = table.map { it.size }.maxOrNull() ?: 0
-		val widths = (0 until colLen).map(this::calcWidth).toList()
+		val widths = (0 until colLen).map(this::calculateWidth).toList()
 		val builder = StringBuilder()
 		(0..table.size).forEach { r ->
 			if (r in lineIndices) {
@@ -79,15 +79,16 @@ class Table(
 		return builder.toString()
 	}
 
-	private fun calcWidth(colIndex: Int): Int {
+	/**
+	 * Return maximum length in `colIndex`th column.
+	 * Note that the length is in half-width.
+	 */
+	private fun calculateWidth(colIndex: Int): Int {
 		val vertLine = table.map { if (colIndex in it.indices) it[colIndex] else "" }
-		return (vertLine.map(this::len).maxOrNull() ?: 0)
+		return (vertLine.map(this::strLenInHalfWidth).maxOrNull() ?: 0)
 	}
 
-	/**
-	 * Return length by bytes (half-width)
-	 */
-	private fun len(s: String): Int {
+	private fun strLenInHalfWidth(s: String): Int {
 		return s.map {
 			if (it.isFullWidth()) 2 else 1
 		}.sum()

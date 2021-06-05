@@ -1,7 +1,7 @@
 package kr.sixtyfive
 
-object AlignLeft : Alignment {
+object RightAlign : Alignment {
 	override fun pad(): (String, Int, Char) -> String {
-		return String::padEnd
+		return String::padStart
 	}
 }
